@@ -13,14 +13,27 @@ public class AppDriver {
 			String input = file.readLine();
 			StringTokenizer line = new StringTokenizer(input," ");
 			
+		int counter = 0;
+			int size = Integer.parseInt(line.nextToken());
+			
+		
+			Shape[] shapes = new Shape[size + 1];
 			while(line != null)
 			{
 				
-				System.out.println(line.nextToken());
+				
+			
+			String shapeName = line.nextToken();
+			String number1 = line.nextToken();
+			String number2 = line.nextToken();
+			
+			Shape shape = new Shape(shapeName,number1,number2);
+			shapes[counter] = shape;
+			
+			counter++;
 				
 		
 			}
-				
 			
 			
 				
