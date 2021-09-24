@@ -2,10 +2,20 @@ package assignmentManagementApplication;
 
 import java.util.Comparator;
 
+
 public class Shape implements Comparable, Comparator{
-	double height;
-	double shapeName;
+	String shapeName;
+	double number1;
+	double number2;
 	
+	public Shape (String shapeName, Double number1, Double number2) {
+		
+		
+		shapeName = this.shapeName;
+		number1 = this.number1;
+		number2 = this.number2;
+		
+	}
 	
 	@Override
 	public int compare(Object o1, Object o2) {
@@ -19,13 +29,32 @@ public class Shape implements Comparable, Comparator{
 		return 0;
 	}
 
-	public double getHeight() {
-		return height;
+	public double getNumber1() {
+		return number1;
 	}
 
-	public void setHeight(double height) {
-		this.height = height;
+	public void setNumber1(double number1) {
+		this.number1 = number1;
 	}
+
+	
+
+	public String getShapeName() {
+		return shapeName;
+	}
+
+	public void setShapeName(String shapeName) {
+		this.shapeName = shapeName;
+	}
+
+	public double getNumber2() {
+		return number2;
+	}
+
+	public void setNumber2(double number2) {
+		this.number2 = number2;
+	}
+
 	
 	
 

@@ -16,27 +16,32 @@ public class AppDriver {
 		int counter = 0;
 			int size = Integer.parseInt(line.nextToken());
 			
-		
-			Shape[] shapes = new Shape[size + 1];
-			while(line != null)
-			{
-				
+			
+			Shape newArry[] = new Shape[size + 1];
+			
+			
+			
+			for(int i = 0; i < size; i++) {
 				
 			
-			String shapeName = line.nextToken();
-			String number1 = line.nextToken();
-			String number2 = line.nextToken();
+			String shapeName = line.nextToken().toString();
+			Double number1 = Double.parseDouble(line.nextToken());
+			Double number2 = Double.parseDouble(line.nextToken());
 			
 			Shape shape = new Shape(shapeName,number1,number2);
-			shapes[counter] = shape;
+			shape.setShapeName(shapeName);
+			shape.setNumber1(number1);
+			shape.setNumber2(number2);
+			newArry[counter] = shape;
+			
 			
 			counter++;
+			
 				
-		
+			
 			}
 			
 			
-				
 			
 			
 			file.close();
