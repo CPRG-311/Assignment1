@@ -8,10 +8,9 @@ public class Shape implements Comparable, Comparator{
 	double number1;
 	double number2;
 	
-	public Shape (String shapeName, Double number1, Double number2) {
-		
-		
-		shapeName = this.shapeName;
+	//we dont want to include the shape name in the object, were creating the objects
+	// as their subclass and type casting them after to be held in Shape 
+	public Shape(Double number1, Double number2) {		
 		number1 = this.number1;
 		number2 = this.number2;
 		

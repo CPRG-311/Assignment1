@@ -28,6 +28,10 @@ public class AppDriver {
 			Double number1 = Double.parseDouble(line.nextToken());
 			Double number2 = Double.parseDouble(line.nextToken());
 			
+			// Were not creating shape objects, the Shape class is simply the box to store
+			// all of the specific shapes
+			// you have to read in the shape type and create that specific shape,
+			// eg. if it reads cone: Shape shape = (Shape)new Cone(num1, num2);
 			Shape shape = new Shape(shapeName,number1,number2);
 			shape.setShapeName(shapeName);
 			shape.setNumber1(number1);
