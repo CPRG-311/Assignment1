@@ -1,22 +1,14 @@
 package assignmentManagementApplication;
 
-public class Prism extends Shape {
-	double height;
+public abstract class Prism extends Shape {
 	double sideLength;
 	
-	public double getHeight() {
-		return height;
-	}
-	public void setHeight(double height) {
-		this.height = height;
-	}
 	public double getSideLength() {
 		return sideLength;
 	}
 	public void setSideLength(double sideLength) {
 		this.sideLength = sideLength;
 	}
-	
-	
-	
+	public abstract double calculateBaseArea();
+	public abstract double calculateVolume();
 }

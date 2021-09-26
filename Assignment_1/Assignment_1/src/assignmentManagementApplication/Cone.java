@@ -1,12 +1,12 @@
 package assignmentManagementApplication;
 
-public class Cone extends Shape implements Calculations{
-	double height;
+public class Cone extends Shape {
 	double radius;
 	
 	public Cone(double height, double radius) {
+		super();
 		this.radius = radius;
-		this.height = height;
+		super.height = height;
 	}
 
 	public double getRadius() {
@@ -17,12 +17,10 @@ public class Cone extends Shape implements Calculations{
 		this.radius = radius;
 	}
 
-	@Override
 	public double calculateBaseArea() {
 		return Math.PI * Math.pow(radius, 2);
 	}
 
-	@Override
 	public double calculateVolume() {
 		double baseArea = this.calculateBaseArea();
 		return (1.0/3) * baseArea * height;

@@ -3,11 +3,10 @@ package assignmentManagementApplication;
 import java.util.Comparator;
 
 
-public class Shape implements Comparable, Comparator{
-	
-	public Shape(Double number1, Double number2) {
-		// TODO Auto-generated constructor stub
-	}
+public abstract class Shape implements Comparable, Comparator{
+	double height;
+	public abstract double calculateBaseArea();
+	public abstract double calculateVolume();
 
 	@Override
 	public int compare(Object o1, Object o2) {

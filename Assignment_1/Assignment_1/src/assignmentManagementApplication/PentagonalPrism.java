@@ -1,8 +1,9 @@
 package assignmentManagementApplication;
 
-public class PentagonalPrism extends Prism implements Calculations{
+public class PentagonalPrism extends Prism {
 
 	public PentagonalPrism(double height, double side) {
+		super();
 		super.height = height;
 		super.sideLength = side;
 	}

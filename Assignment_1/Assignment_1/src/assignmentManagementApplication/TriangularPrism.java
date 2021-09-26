@@ -1,7 +1,8 @@
 package assignmentManagementApplication;
 
-public class TriangularPrism extends Prism implements Calculations{
+public class TriangularPrism extends Prism {
 	public TriangularPrism(double height, double side) {
+		super();
 		super.height = height;
 		super.sideLength = side;
 	}

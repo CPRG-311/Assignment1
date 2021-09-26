@@ -1,11 +1,11 @@
 package assignmentManagementApplication;
 
-public class Pyramid extends Shape implements Calculations{
-	double height;
+public class Pyramid extends Shape {
 	double sideLength;
 	
 	public Pyramid(double height, double edgeLength) {
-		this.height = height;
+		super();
+		super.height = height;
 		this.sideLength = edgeLength;
 	}
 

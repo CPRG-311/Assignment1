@@ -1,8 +1,9 @@
 package assignmentManagementApplication;
 
-public class SquarePrism extends Prism implements Calculations {
+public class SquarePrism extends Prism {
 	
 	public SquarePrism(double height, double side) {
+		super();
 		super.height = height; 
 		super.sideLength = side;
 	}

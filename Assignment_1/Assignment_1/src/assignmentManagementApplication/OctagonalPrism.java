@@ -1,8 +1,9 @@
 package assignmentManagementApplication;
 
-public class OctagonalPrism extends Prism implements Calculations{
+public class OctagonalPrism extends Prism {
 	
 	public OctagonalPrism(double height, double side) {
+		super();
 		super.height = height;
 		super.sideLength = side;
 	}
