@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class AppDriver {
-	
 	public static void main(String[] args) {
 		try {
 			BufferedReader file = new BufferedReader(new FileReader("Assignment_1/res/polyfor1.txt"));
@@ -19,8 +18,8 @@ public class AppDriver {
 			
 			for(int i = 0; i < size; i++) {
 				String shapeName = line.nextToken().toString();
-				Double number1 = Double.parseDouble(line.nextToken());
-				Double number2 = Double.parseDouble(line.nextToken());
+				double number1 = Double.parseDouble(line.nextToken());
+				double number2 = Double.parseDouble(line.nextToken());
 				
 				Shape newShape;
 				switch (shapeName) {
@@ -54,8 +53,8 @@ public class AppDriver {
 					shapes[counter] = newShape;
 					counter++;
 				}
-			}
 			file.close();
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
