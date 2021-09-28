@@ -3,7 +3,7 @@ package assignmentManagementApplication;
 import java.util.Comparator;
 
 
-public abstract class Shape implements Comparable, Comparator{
+public abstract class Shape implements Comparable<Shape>{
 	double height;
 	public abstract double calculateBaseArea();
 	public abstract double calculateVolume();
@@ -16,16 +16,17 @@ public abstract class Shape implements Comparable, Comparator{
 		this.height = height;
 	}
 	
-	@Override
-	public int compare(Object o1, Object o2) {
-		
-		return 0;
-	}
 
 	@Override
-	public int compareTo(Object o) {
-		
-		return 0;
+	public int compareTo(Shape o) {
+		if (this.height > (o.height)) {
+			return 1;
+		}
+		else if (this.height == o.height) {
+			return 0;
+		} else {
+			return -1;
+		}
 	}
 
 
