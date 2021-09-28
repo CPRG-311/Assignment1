@@ -56,9 +56,7 @@ public class AppDriver {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} //catch (InvalidShapeError e) {
-			//e.printMessage();
-		//}
+		}
 		
 		
 		
