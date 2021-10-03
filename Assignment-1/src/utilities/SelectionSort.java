@@ -5,7 +5,7 @@ import java.util.Comparator;
 import assignmentManagementApplication.*;
 
 public class SelectionSort {
-	public static <T> void sort(Shape[] array, Comparator<? super T> c) {
+	public static <T> void sort(Shape[] array, Comparator<? super Shape> c) {
 		//start with unsorted array
 		//each outer iteration is one sort
 		//each inner iteration is min of unsorted

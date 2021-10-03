@@ -46,6 +46,8 @@ public class AppDriver {
 					argList[1] = new Double(Double.parseDouble(line.nextToken()));
 			
 					o = ct.newInstance(argList);
+					shapes[counter] = (Shape)o;
+					counter++;
 					
 				}
 				

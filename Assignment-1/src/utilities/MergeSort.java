@@ -22,7 +22,7 @@ public class MergeSort {
 			sort(array, middle+1, right, c);
 			
 			//merges the arrays starting at size one and increasing by double each time
-			merge(array, left, middle, right);
+			merge(array, left, middle, right, c);
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class MergeSort {
 	 * @param middle the middle value used to split the array in half
 	 * @param right the rightmost value to sort
 	 */
-	private void merge(Shape[] array, int left, int middle, int right) {
+	private <T> void merge(Shape[] array, int left, int middle, int right, Comparator<? super Shape> c) {
 		int leftArraySize = middle - left + 1;
 		int rightArraySize = right - middle;
 		
@@ -57,7 +57,7 @@ public class MergeSort {
 		//loop runs until BOTH subarrays have been fully examined L-->R
 		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
 			//replace with .compare()
-			if (leftArray[leftIndex] <= rightArray[rightIndex]) {
+			if (c.compare(leftArray[leftIndex], rightArray[rightIndex]) >= 0) {
 				array[mergedIndex] = leftArray[leftIndex];
 				leftIndex++;
 			}
