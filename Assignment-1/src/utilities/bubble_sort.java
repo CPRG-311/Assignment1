@@ -1,22 +1,39 @@
 package utilities;
-public class bubble_sort {
+
+import java.util.Comparator;
+
+public class bubble_sort 
+{
 	
-	static void bubbleSort(int arr[], int n)
+	public static <T> void bubbleSort(T[] shape, Comparator<? super T> comp)
 	{
-		if (n==1)
+		while(!isSorted(shape, comp))
 		{
-			return;
-		}
-		
-		for (int i = 0; i<n-1;i++)
-		{
-			if(arr[i] > arr[i+1])
+			for(int i = 0; i < shape.length; i++)
 			{
-				int temp = arr[i];
-				arr[i] = arr[i+1];
-				arr[i+1]=temp;
+				if(comp.compare(shape[i], shape[i+1]) == -1)
+				{
+					swapElements(shape, i, i+1);
+				}
 			}
 		}
-		bubbleSort(arr, n-1);
+	}
+	private static <T> void swapElements( T[] shape, int i, int j )
+	{
+		T temp = shape[i];
+		shape[i] = shape[j];
+		shape[j] = temp;
+	}
+
+	private static <T> boolean isSorted(T[] shape, Comparator<? super T> comp) 
+	{	
+		for( int i = 0; i < shape.length - 1; i++ )
+		{
+			if( comp.compare( shape[i], shape[i+1] ) > 0 )
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }
