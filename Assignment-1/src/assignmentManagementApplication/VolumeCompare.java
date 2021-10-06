@@ -4,6 +4,9 @@ import java.util.Comparator;
 
 public class VolumeCompare implements Comparator<Shape> {
 
+	VolumeCompare(){
+		
+	}
 	@Override
 	public int compare(Shape o1, Shape o2) {
 		double vol1 = o1.calculateVolume();

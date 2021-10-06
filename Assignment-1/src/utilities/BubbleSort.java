@@ -2,10 +2,10 @@ package utilities;
 
 import java.util.Comparator;
 
-public class bubble_sort 
+public class BubbleSort 
 {
 	
-	public static <T> void bubbleSort(T[] shape, Comparator<? super T> comp)
+	public static <T> void sort(T[] shape, Comparator<? super T> comp)
 	{
 		while(!isSorted(shape, comp))
 		{

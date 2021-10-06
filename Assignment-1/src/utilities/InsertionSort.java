@@ -1,6 +1,6 @@
 package utilities;
 
-public class insertion_sort {
+public class InsertionSort {
 	
 	static void insertionSort(int arr[], int n)
 	{

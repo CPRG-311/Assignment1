@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
@@ -21,6 +21,7 @@ public class AppDriver {
 			String compareType = "";
 			String sortType = "";
 			
+			BaseAreaCompare compareByA = null; VolumeCompare compareByV = null;
 			for (String command: commandInput) {
 				if (command.startsWith("-f") || command.startsWith("-F")) {
 					filename = command.substring(2);
@@ -28,8 +29,14 @@ public class AppDriver {
 				else if (command.startsWith("-t") || command.startsWith("-T")) {
 					String letter = command.substring(2);
 					switch (letter.toLowerCase()) {
-					case "a": compareType = "BaseAreaCompare"; break;
-					case "v": compareType = "VolumeCompare"; break;
+					case "a":
+						compareType = "BaseAreaCompare";
+						compareByA = new BaseAreaCompare();
+						break;
+					case "v":
+						compareType = "VolumeCompare";
+						compareByV = new VolumeCompare();
+						break;
 					case "h": compareType = null; break;
 					default: // add compareType exception
 					}
@@ -55,34 +62,40 @@ public class AppDriver {
 			}
 			
 			if (array != null) {
-				sortArray(array, sortType, compareType);
+				if (compareType == "VolumeCompare" && compareByV != null) {
+					sortArray(array, sortType, compareByV);
+				}
+				else if(compareType == "BaseAreaCompare" && compareByA != null) {
+					sortArray(array, sortType, compareByA);
+				}
+				else {
+					sortArray(array, sortType, null);
+				}
 			}
 			
 			
 			
 	}
 
-	private static void sortArray(Shape[] array, String sortType, String compareType) {
-		Comparator<Shape> compareBy;
-		if (compareType == "VolumeCompare") {
-			compareBy = new VolumeCompare();
-		}
-		else if (compareType == "BaseAreaCompare") {
-			compareBy = new BaseAreaCompare();
-		}
-		else {
-			compareBy = null;
-		}
+	private static <T> void sortArray(Shape[] array, String sortType, Comparator<? super Shape> compareBy) {
 		
 		switch (sortType) {
 		case "SelectionSort": 
 			SelectionSort.sort(array, compareBy);
 			break;
 		case "MergeSort":
-			//run into issue here, how to we pass it values if we don't know how to sort it
-			MergeSort.sort(array, array[0], array[array.length - 1], compareBy);
+			MergeSort.sort(array, 0, array.length - 1, compareBy);
 			break;
-		// finish rest of cases
+		case "InsertionSort":
+			//add params
+			//InsertionSort.sort();
+			break;
+		case "BubbleSort":
+			BubbleSort.sort(array, compareBy);
+			break;
+		case "CombSort":
+			CombSort.sort(array, compareBy);
+			break;
 		}
 		
 	}

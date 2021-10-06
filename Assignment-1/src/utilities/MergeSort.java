@@ -13,7 +13,7 @@ public class MergeSort {
 	 * @param right the rightmost value of array
 	 * @param c the attribute to sort the array by
 	 */
-	public <T> void sort(Shape[] array, int left, int right, Comparator<? super Shape> c) {
+	public static <T> void sort(Shape[] array, int left, int right, Comparator<? super Shape> c) {
 		if (left < right) {
 			int middle = left + (right - 1) / 2;
 			
@@ -35,7 +35,7 @@ public class MergeSort {
 	 * @param middle the middle value used to split the array in half
 	 * @param right the rightmost value to sort
 	 */
-	private <T> void merge(Shape[] array, int left, int middle, int right, Comparator<? super Shape> c) {
+	private static <T> void merge(Shape[] array, int left, int middle, int right, Comparator<? super Shape> c) {
 		int leftArraySize = middle - left + 1;
 		int rightArraySize = right - middle;
 		
