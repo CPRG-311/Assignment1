@@ -1,30 +1,48 @@
 package utilities;
 
+import java.util.Comparator;
+
+import assignmentManagementApplication.Shape;
+
 public class QuickSort {
-	static void swap(int[] Shape, int i, int j) {
-		int check = Shape[i];
-		Shape[i] = Shape[j];
-		Shape[j] = check;
+	public static <T> void quickSort(T[] shape, Comparator<? super T> comp){
+		recursiveQuickSort(shape, 0, shape.length-1, comp);
 	}
-	static int part(int[] Shape, int min, int max) {
-		int piv = Shape[max];
-		int i = (min - 1);
+
+	private static <T> void recursiveQuickSort(T[] shape, int min, int max, Comparator<? super T> comp) {
+		int start = partition(shape, min, max, comp);
+		if (min < start - 1) {
+			recursiveQuickSort(shape, start, min-1, comp);
+		}
+		if (max < start) {
+			recursiveQuickSort(shape, start, max, comp);
+		}
 		
-		for (int j = min; j <= max - 1; j++) {
-			if (Shape[j] < piv) {
-				i++;
-				swap(Shape, i, j);
+	}
+
+	private static <T> int partition(T[] shape, int min, int max, Comparator<? super T> comp) {
+		T pivot = (T) shape[min];
+		while (min <= max) {
+			while(comp.compare(shape[min], pivot) < 0) {
+				min++;
+			}
+			while(comp.compare(shape[max], pivot) > 0 ) {
+				max++;
+			}
+			if(min <= max) {
+				swapElements(shape, min, max);
+				min++;
+				max--;
 			}
 		}
-		swap(Shape, i + 1, max);
-		return (i + 1);
-		
+		return min;
 	}
-	static void quickSort(int[] Shape, int min, int max) {
-		if(min < max) {
-			int pi = part(Shape, min, max);
-			quickSort(Shape, min, pi - 1);
-			quickSort(Shape, pi + 1, max);
-		}
-	}
+
+
+private static <T> void swapElements( T[] shape, int i, int j )
+{
+	T temp = shape[i];
+	shape[i] = shape[j];
+	shape[j] = temp;
+}
 }
