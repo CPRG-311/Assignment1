@@ -15,8 +15,8 @@ public class TestBubbleSort {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		testArray = new Shape[]{(Shape)new Cone(4,5),(Shape)new Pyramid(6,10),(Shape) new Cylinder(10,3),
-				(Shape)new PentagonalPrism(3,9),(Shape)new Cone(3,2), (Shape)new OctagonalPrism(3,10)};
-		}
+			(Shape)new PentagonalPrism(3,9),(Shape)new Cone(3,2), (Shape)new OctagonalPrism(3,10)};
+	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {

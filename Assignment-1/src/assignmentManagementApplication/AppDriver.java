@@ -61,24 +61,31 @@ public class AppDriver {
 				e.printStackTrace();
 			}
 			
+			long timeTaken = 0;
 			if (array != null) {
 				if (compareType == "VolumeCompare" && compareByV != null) {
-					sortArray(array, sortType, compareByV);
+					timeTaken = sortArray(array, sortType, compareByV);
 				}
 				else if(compareType == "BaseAreaCompare" && compareByA != null) {
-					sortArray(array, sortType, compareByA);
+					timeTaken = sortArray(array, sortType, compareByA);
 				}
 				else {
-					sortArray(array, sortType, null);
+					timeTaken = sortArray(array, sortType, null);
 				}
 			}
 			
-			
-			
+			System.out.println("The " + sortType + " took " + timeTaken + " ms.");
+			for (int i = 0; i < array.length; i++) {
+				if (i==0 || i==array.length - 1 || i%1000==0) {
+					System.out.println(array[i].toString());
+				}
+			}
 	}
 
-	private static <T> void sortArray(Shape[] array, String sortType, Comparator<? super Shape> compareBy) {
+	private static <T> long sortArray(Shape[] array, String sortType, Comparator<? super Shape> compareBy) {
+		long start, stop;
 		
+		start = System.currentTimeMillis();
 		switch (sortType) {
 		case "SelectionSort": 
 			SelectionSort.sort(array, compareBy);
@@ -87,8 +94,7 @@ public class AppDriver {
 			MergeSort.sort(array, 0, array.length - 1, compareBy);
 			break;
 		case "InsertionSort":
-			//add params
-			//InsertionSort.sort();
+			InsertionSort.sort(array, array.length, compareBy);
 			break;
 		case "BubbleSort":
 			BubbleSort.sort(array, compareBy);
@@ -97,9 +103,12 @@ public class AppDriver {
 			CombSort.sort(array, compareBy);
 			break;
 		case "QuickSort": 
-			//add params
-			//QuickSort.sort();
+			QuickSort.sort(array, compareBy);
 		}
+		stop = System.currentTimeMillis();
+		
+		return stop - start;
+		
 	}
 
 	private static Shape[] loadArray(String filename) {
