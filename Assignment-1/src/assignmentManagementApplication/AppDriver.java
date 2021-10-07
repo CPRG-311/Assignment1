@@ -23,10 +23,10 @@ public class AppDriver {
 			
 			BaseAreaCompare compareByA = null; VolumeCompare compareByV = null;
 			for (String command: commandInput) {
-				if (command.startsWith("-f") || command.startsWith("-F")) {
+				if (command.startsWith("–f") || command.startsWith("–F")) {
 					filename = command.substring(2);
 				}
-				else if (command.startsWith("-t") || command.startsWith("-T")) {
+				else if (command.startsWith("–t") || command.startsWith("–T")) {
 					String letter = command.substring(2);
 					switch (letter.toLowerCase()) {
 					case "a":
@@ -41,7 +41,7 @@ public class AppDriver {
 					default: // add compareType exception
 					}
 				}
-				else if (command.startsWith("-s") || command.startsWith("-S")) {
+				else if (command.startsWith("–s") || command.startsWith("–S")) {
 					String letter = command.substring(2);
 					switch (letter) {
 					case "q": sortType = "QuickSort"; break;
@@ -54,6 +54,8 @@ public class AppDriver {
 					}
 				}
 			}
+			System.out.println(filename);
+			
 			Shape[] array = null;
 			try {
 				array = loadArray(filename);
