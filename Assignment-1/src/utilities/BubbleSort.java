@@ -2,15 +2,27 @@ package utilities;
 
 import java.util.Comparator;
 
+import assignmentManagementApplication.Shape;
+
 public class BubbleSort 
 {
 	//something is not working, it never ends, in a continuous loop
-	public static <T> void sort(T[] shape, Comparator<? super T> comp)	{
+	public static <T> void sort(Shape[] shape, Comparator<? super Shape> comp)	{
 		for(int i = 0; i < shape.length - 1; i++)
 		{
-			if(comp.compare(shape[i], shape[i+1]) == -1)
-			{
-				swapElements(shape, i, i+1);
+			for(int j=0; j < shape.length - 1; j++) {
+				if (comp != null) {
+					if(comp.compare(shape[j], shape[j+1]) == -1)
+					{
+						swapElements(shape, j, j+1);
+					}
+				}
+				else {
+					if(shape[j].compareTo(shape[j+1]) == -1)
+					{
+						swapElements(shape, j, j+1);
+					}
+				}
 			}
 		}
 	}

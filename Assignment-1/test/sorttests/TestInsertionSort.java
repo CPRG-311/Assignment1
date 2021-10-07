@@ -6,6 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import assignmentManagementApplication.BaseAreaCompare;
 import assignmentManagementApplication.Cone;
 import assignmentManagementApplication.Cylinder;
 import assignmentManagementApplication.OctagonalPrism;
@@ -15,6 +16,7 @@ import assignmentManagementApplication.Shape;
 import assignmentManagementApplication.VolumeCompare;
 import utilities.BubbleSort;
 import utilities.InsertionSort;
+import utilities.SelectionSort;
 
 public class TestInsertionSort {
 	static Shape[] testArray;
@@ -41,6 +43,27 @@ public class TestInsertionSort {
 		for (Shape s: testArray) {
 			System.out.printf("%.3f ,", s.calculateVolume());
 		}
+		System.out.println();
+		System.out.println("\nBefore using area: ");
+		for (Shape s: testArray) {
+			System.out.printf("%.3f ,", s.calculateBaseArea());
+		}
+		SelectionSort.sort(testArray, new BaseAreaCompare());
+		System.out.println("After using area: ");
+		for (Shape s: testArray) {
+			System.out.printf("%.3f ,", s.calculateBaseArea());
+		}
+		System.out.println();
+		System.out.println("\nBefore using height: ");
+		for (Shape s: testArray) {
+			System.out.printf("%.3f ,", s.getHeight());
+		}
+		SelectionSort.sort(testArray,null);
+		System.out.println("After using height: ");
+		for (Shape s: testArray) {
+			System.out.printf("%.3f ,", s.getHeight());
+		}
+		System.out.println();
 	}
 
 }
