@@ -14,8 +14,8 @@ public class MergeSort {
 	 * @param c the attribute to sort the array by
 	 */
 	public static <T> void sort(Shape[] array, int left, int right, Comparator<? super Shape> c) {
-		if (left < right) {
-			int middle = left + (right - 1) / 2;
+		if (right > left) {
+			int middle = (left + (right - 1)) / 2;
 			
 			//recursive until the arrays are viewed at a length of 1, merges them one pair at a time, to one quad.. etc
 			sort(array, left, middle, c);
@@ -53,7 +53,7 @@ public class MergeSort {
 		
 		int leftIndex = 0; int rightIndex = 0;
 		
-		int mergedIndex = 1;
+		int mergedIndex = left;
 		//loop runs until BOTH subarrays have been fully examined L-->R
 		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
 			if (c == null) {
@@ -76,6 +76,18 @@ public class MergeSort {
 					rightIndex++;
 				}
 			}
+			mergedIndex++;
+		}
+		
+		while (leftIndex < leftArraySize) {
+			array[mergedIndex] = leftArray[leftIndex];
+			leftIndex++;
+			mergedIndex++;
+		}
+		
+		while (rightIndex < rightArraySize) {
+			array[mergedIndex] = rightArray[rightIndex];
+			rightIndex++;
 			mergedIndex++;
 		}
 	}

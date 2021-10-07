@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class VolumeCompare implements Comparator<Shape> {
 
-	VolumeCompare(){
+	public VolumeCompare(){
 		
 	}
 	@Override
