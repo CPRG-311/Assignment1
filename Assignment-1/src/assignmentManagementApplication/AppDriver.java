@@ -96,8 +96,10 @@ public class AppDriver {
 		case "CombSort":
 			CombSort.sort(array, compareBy);
 			break;
+		case "QuickSort": 
+			//add params
+			//QuickSort.sort();
 		}
-		
 	}
 
 	private static Shape[] loadArray(String filename) {
