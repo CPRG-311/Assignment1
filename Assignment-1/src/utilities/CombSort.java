@@ -30,7 +30,7 @@ public class CombSort
 			{
 				if(comp == null)
 				{
-					if(((Shape)shapes[i]).compareTo((Shape)shapes[i+gap]) == 1)
+					if(((Shape)shapes[i]).compareTo((Shape)shapes[i+gap]) == -1)
 					{
 						swapElements(shapes, i,i+gap);
 						swapped = true;
@@ -38,7 +38,7 @@ public class CombSort
 				}
 				else
 				{
-					if(comp.compare(shapes[i], shapes[i+gap]) == 1)
+					if(comp.compare(shapes[i], shapes[i+gap]) == -1)
 					{
 						swapElements(shapes, i,i+gap);
 						swapped = true;

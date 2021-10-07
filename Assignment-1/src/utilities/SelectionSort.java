@@ -24,8 +24,14 @@ public class SelectionSort {
 			for (int j = i+1; j < len; j++) {
 				Shape currentShape = array[j];
 				//double currentShapeHeight = currentShape.getHeight();
-				int result = c.compare(currentShape,currentMinShape);
-				if (result == -1) {
+				int result = -2;
+				if (c != null) {
+					result = c.compare(currentShape,currentMinShape);
+				}
+				else {
+					result = currentShape.compareTo(currentMinShape);
+				}
+				if (result == 1) {
 					currentMinIndex = j;
 					currentMinShape = array[j];
 					//currentMinShapeHeight = currentMinShape.getHeight();
@@ -42,7 +48,7 @@ public class SelectionSort {
 				array[i] = currentMinShape;
 			}
 		}
-		System.out.println(array);
 	}
 }
+
 

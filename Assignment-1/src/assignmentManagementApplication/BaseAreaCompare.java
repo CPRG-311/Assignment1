@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class BaseAreaCompare implements Comparator<Shape> {
 
-	BaseAreaCompare(){
+	public BaseAreaCompare(){
 		
 	}
 	
