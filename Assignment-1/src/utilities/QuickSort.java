@@ -12,9 +12,9 @@ public class QuickSort {
 	private static <T> void recursiveQuickSort(Shape[] shape, int min, int max, Comparator<? super Shape> comp) {
 		int start = partition(shape, min, max, comp);
 		if (min < start - 1) {
-			recursiveQuickSort(shape, min, start-1, comp);
+			recursiveQuickSort(shape, start, min-1, comp);
 		}
-		if (max < start) {
+		if (max > start) {
 			recursiveQuickSort(shape, start, max, comp);
 		}
 		
@@ -23,16 +23,26 @@ public class QuickSort {
 	private static <T> int partition(Shape[] shape, int min, int max, Comparator<? super Shape> comp) {
 		Shape pivot = shape[min];
 		while (min <= max) {
-			while(comp.compare(shape[min], pivot) < 0) {
-				min++;
+			if (comp != null) {
+				while(comp.compare(shape[min], pivot) < 0) {
+					min++;
+				}
+				while(comp.compare(shape[max], pivot) > 0 ) {
+					max--;
+				}
 			}
-			while(comp.compare(shape[max], pivot) > 0 ) {
-				max--;
+			else {
+				while(shape[min].compareTo(pivot) < 0) {
+					min++;
+				}
+				while(shape[min].compareTo(pivot) > 0 ) {
+					max--;
+				}
 			}
 			if(min <= max) {
 				swapElements(shape, min, max);
 				min++;
-				max++;
+				max--;
 			}
 		}
 		return min;
