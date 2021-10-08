@@ -44,5 +44,11 @@ public class OctagonalPrism extends Prism {
 		double baseArea = this.calculateBaseArea();
 		return baseArea * height;
 	}
+
+	@Override
+	public String toString() {
+		return "OctagonalPrism [sideLength=" + sideLength + ", height=" + height + ", BaseArea="
+				+ calculateBaseArea() + ", Volume=" + calculateVolume() + "]";
+	}
 	
 }

@@ -18,4 +18,11 @@ public class TriangularPrism extends Prism {
 		double baseArea = this.calculateBaseArea();
 		return baseArea * height;
 	}
+
+	@Override
+	public String toString() {
+		return "TriangularPrism [sideLength=" + sideLength + ", height=" + height + ", BaseArea="
+				+ calculateBaseArea() + ", Volume=" + calculateVolume() + "]";
+	}
+	
 }

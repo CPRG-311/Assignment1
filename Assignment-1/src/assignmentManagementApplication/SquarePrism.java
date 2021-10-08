@@ -7,6 +7,7 @@ public class SquarePrism extends Prism {
 		super.height = height; 
 		super.sideLength = side;
 	}
+	
 
 	@Override
 	public double calculateBaseArea() {
@@ -17,4 +18,13 @@ public class SquarePrism extends Prism {
 	public double calculateVolume() {
 		return Math.pow(sideLength, 2) * height;
 	}
+
+
+	@Override
+	public String toString() {
+		return "SquarePrism [sideLength=" + sideLength + ", height=" + height + ", BaseArea="
+				+ calculateBaseArea() + ", Volume=" + calculateVolume() + "]";
+	}
+	
+	
 }

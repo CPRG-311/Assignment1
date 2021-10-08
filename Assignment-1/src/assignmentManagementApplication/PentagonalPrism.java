@@ -47,5 +47,10 @@ public class PentagonalPrism extends Prism {
 		double baseArea = this.calculateBaseArea();
 		return baseArea * height;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "PentagonalPrism [sideLength=" + sideLength + ", height=" + height + ", BaseArea="
+				+ calculateBaseArea() + ", Volume=" + calculateVolume() + "]";
+	}
 }
