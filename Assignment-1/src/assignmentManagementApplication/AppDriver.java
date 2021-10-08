@@ -1,22 +1,17 @@
 package assignmentManagementApplication;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.*;
 
-import exceptions.compareTypeException;
-import exceptions.sortTypeException;
+import exceptions.*;
 import utilities.*;
 
 public class AppDriver {
 	public static void main(String[] args) throws NoSuchMethodException, SecurityException, ClassNotFoundException,
-		InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, sortTypeException, compareTypeException {
+		InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, sortTypeException, compareTypeException, ArrayLoadingError {
 			
 			String[] commandInput = args;
 			String filename = "";
@@ -24,10 +19,14 @@ public class AppDriver {
 			String sortType = "";
 			
 			BaseAreaCompare compareByA = null; VolumeCompare compareByV = null;
+			//runs through the command line input 
+			try {
 			for (String command: commandInput) {
+				//if command includes filename
 				if (command.startsWith("–f") || command.startsWith("–F")) {
 					filename = command.substring(2);
 				}
+				//if command includes compare type
 				else if (command.startsWith("–t") || command.startsWith("–T")) {
 					String letter = command.substring(2);
 					switch (letter.toLowerCase()) {
@@ -40,9 +39,10 @@ public class AppDriver {
 						compareByV = new VolumeCompare();
 						break;
 					case "h": compareType = null; break;
-					default: throw new compareTypeException("Compare type not found");
+					default: throw new compareTypeException("Invalid compare type, please enter a new command.");
 					}
 				}
+				//if command includes sort type
 				else if (command.startsWith("–s") || command.startsWith("–S")) {
 					String letter = command.substring(2);
 					
@@ -53,20 +53,29 @@ public class AppDriver {
 					case "i": sortType = "InsertionSort"; break;
 					case "m": sortType = "MergeSort"; break;
 					case "z": sortType = "CombSort"; break;
-					default: throw new sortTypeException("Invalid Argument");
+					default: throw new sortTypeException("Invalid sort type, please enter a new command.");
 					}
 				}
 			}
-			System.out.println(filename);
+			} catch (compareTypeException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			} catch (sortTypeException e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
 			
 			Shape[] array = null;
 			try {
 				array = loadArray(filename);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				System.out.println("File entered cannot be found. Please enter a new command.");
+				System.exit(0);
 			}
 			
 			long timeTaken = 0;
+			
+			try {
 			if (array != null) {
 				if (compareType == "VolumeCompare" && compareByV != null) {
 					timeTaken = sortArray(array, sortType, compareByV);
@@ -77,16 +86,31 @@ public class AppDriver {
 				else {
 					timeTaken = sortArray(array, sortType, null);
 				}
+			} else {
+				throw new ArrayLoadingError("Error occured in loading array. Check file and try a new command.");
+			}} catch(ArrayLoadingError e) {
+				System.out.println(e.getMessage());
+				System.exit(0);
 			}
 			
-			System.out.println("The " + sortType + " took " + timeTaken + " ms.");
+			System.out.println("Sorted array: ");
 			for (int i = 0; i < array.length; i++) {
 				if (i==0 || i==array.length - 1 || i%1000==0) {
 					System.out.println(array[i].toString());
 				}
 			}
+			System.out.println("The " + sortType + " took " + timeTaken + " ms.");
 	}
 
+	/**
+	 * @author Ashley Drinkill
+	 * This method sorts the array by the given sort type, and times the amount taken to run the sort
+	 * @param <T> any comparator
+	 * @param array the array of Shape objects
+	 * @param sortType the type to sort using
+	 * @param compareBy the attribute to compare by
+	 * @return
+	 */
 	private static <T> long sortArray(Shape[] array, String sortType, Comparator<? super Shape> compareBy) {
 		long start, stop;
 		
@@ -116,6 +140,12 @@ public class AppDriver {
 		
 	}
 
+	/**
+	 * @author Ethan Wright
+	 * the method to load the array with Shapes from an entered file location
+	 * @param filename the filename, must be located in the 'res' folder
+	 * @return returns the array of Shapes, fully loaded with all the Shapes
+	 */
 	private static Shape[] loadArray(String filename) {
 		try {
 			BufferedReader file = new BufferedReader(new FileReader("res/" + filename));
@@ -132,6 +162,7 @@ public class AppDriver {
 			
 				String shapeName = line.nextToken().toString();
 				Object o = null;
+				
 				//trying to use reflection to make it more efficient
 				
 				String className = "assignmentManagementApplication."+shapeName;
@@ -154,6 +185,7 @@ public class AppDriver {
 					counter++;
 				}
 			}
+			file.close();
 			return shapes;
 		}
 		catch(FileNotFoundException e){
