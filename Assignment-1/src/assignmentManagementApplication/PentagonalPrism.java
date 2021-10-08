@@ -1,5 +1,15 @@
 package assignmentManagementApplication;
 
+/**
+ * 
+ * @author Ethan Wright,Gia Hoa (Tom) Nguyen, Ashley Drinkill, Kolby Robertson
+ * 
+ * This class is a extention of prism and creates a object called PentagonalPrism
+ * 
+ * Requires the height and side values to run properly
+ *
+ */
+
 public class PentagonalPrism extends Prism {
 	
 	/**

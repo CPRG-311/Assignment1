@@ -1,5 +1,14 @@
 package assignmentManagementApplication;
 
+/**
+ * 
+ * @author Ethan Wright,Gia Hoa (Tom) Nguyen, Ashley Drinkill, Kolby Robertson
+ * 
+ * This class extends shape and creates a object called Prism
+ * 
+ * Requires a shape
+ *
+ */
 public abstract class Prism extends Shape {
 	double sideLength;
 	

@@ -1,5 +1,13 @@
 package assignmentManagementApplication;
 
+/**
+ * 
+ * @author Ethan Wright,Gia Hoa (Tom) Nguyen, Ashley Drinkill, Kolby Robertson
+ * 
+ * This class is a extention of prism and creates a OctagonalPrism object
+ *Requires a height and side
+ */
+
 public class OctagonalPrism extends Prism {
 	/**
 	 * @author Ethan Wright,Gia Hoa (Tom) Nguyen, Ashley Drinkill, Kolby Robertson
