@@ -3,12 +3,19 @@ package assignmentManagementApplication;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.*;
-
 import exceptions.*;
 import utilities.*;
 
+/**
+ * @author Ashley Drinkill, Gia Hoa (Tom) Hyugen, Kolby Robertson, Ethan Wright
+ * this class is the driver for the application, it accepts command line arguments and analyzes the command
+ * based on a provided format, the program reads in a file of Shape parameters and characterizes them into 
+ * different Shapes, and compartementalizing them into a base array of Shapes. 
+ * Then the program sorts the array using the provided sort and compare type in the command line and shows the 
+ * user the time it took to run the sort, and an overview on the sort itself. 
+ *
+ */
 public class AppDriver {
 	public static void main(String[] args) throws NoSuchMethodException, SecurityException, ClassNotFoundException,
 		InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, sortTypeException, compareTypeException, ArrayLoadingError {
@@ -66,6 +73,7 @@ public class AppDriver {
 			}
 			
 			Shape[] array = null;
+			// loads the array from the given filename
 			try {
 				array = loadArray(filename);
 			} catch (NullPointerException e) {
@@ -75,8 +83,9 @@ public class AppDriver {
 			
 			long timeTaken = 0;
 			
+			// runs the compare script as long as the array is populated with objects and exists
 			try {
-			if (array != null) {
+			if (array != null && array.length > 0) {
 				if (compareType == "VolumeCompare" && compareByV != null) {
 					timeTaken = sortArray(array, sortType, compareByV);
 				}
@@ -92,7 +101,7 @@ public class AppDriver {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
-			
+			// prints the output of the sort onto the screen
 			System.out.println("Sorted array: ");
 			for (int i = 0; i < array.length; i++) {
 				if (i==0 || i==array.length - 1 || i%1000==0) {
