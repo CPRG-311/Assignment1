@@ -10,11 +10,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
+import exceptions.compareTypeException;
+import exceptions.sortTypeException;
 import utilities.*;
 
 public class AppDriver {
 	public static void main(String[] args) throws NoSuchMethodException, SecurityException, ClassNotFoundException,
-		InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, sortTypeException, compareTypeException {
 			
 			String[] commandInput = args;
 			String filename = "";
@@ -38,11 +40,12 @@ public class AppDriver {
 						compareByV = new VolumeCompare();
 						break;
 					case "h": compareType = null; break;
-					default: // add compareType exception
+					default: throw new compareTypeException("Compare type not found");
 					}
 				}
 				else if (command.startsWith("–s") || command.startsWith("–S")) {
 					String letter = command.substring(2);
+					
 					switch (letter) {
 					case "q": sortType = "QuickSort"; break;
 					case "b": sortType = "BubbleSort"; break;
@@ -50,7 +53,7 @@ public class AppDriver {
 					case "i": sortType = "InsertionSort"; break;
 					case "m": sortType = "MergeSort"; break;
 					case "z": sortType = "CombSort"; break;
-					default: // add sortType exception
+					default: throw new sortTypeException("Invalid Argument");
 					}
 				}
 			}
