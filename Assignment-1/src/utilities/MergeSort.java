@@ -54,7 +54,7 @@ public class MergeSort {
 		int leftIndex = 0; int rightIndex = 0;
 		
 		int mergedIndex = left;
-		//loop runs until BOTH subarrays have been fully examined L-->R
+		//loop runs until ONE subarray has been fully examined L-->R
 		while (leftIndex < leftArraySize && rightIndex < rightArraySize) {
 			if (c == null) {
 				if (leftArray[leftIndex].compareTo(rightArray[rightIndex]) >= 0) {
@@ -79,12 +79,13 @@ public class MergeSort {
 			mergedIndex++;
 		}
 		
+		// runs until the rest of the leftarray is added to array
 		while (leftIndex < leftArraySize) {
 			array[mergedIndex] = leftArray[leftIndex];
 			leftIndex++;
 			mergedIndex++;
 		}
-		
+		// runs until the rest of the rightarray is added to array
 		while (rightIndex < rightArraySize) {
 			array[mergedIndex] = rightArray[rightIndex];
 			rightIndex++;

@@ -25,6 +25,13 @@ public class Cone extends Shape {
 		double baseArea = this.calculateBaseArea();
 		return (1.0/3) * baseArea * height;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Cone [radius=" + radius + ", height=" + height + ", BaseArea=" + calculateBaseArea()
+				+ ", Volume=" + calculateVolume() + "]";
+	}
+
+
 	
 }

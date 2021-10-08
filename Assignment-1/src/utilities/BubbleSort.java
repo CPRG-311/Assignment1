@@ -6,7 +6,6 @@ import assignmentManagementApplication.Shape;
 
 public class BubbleSort 
 {
-	//something is not working, it never ends, in a continuous loop
 	public static <T> void sort(Shape[] shape, Comparator<? super Shape> comp)	{
 		for(int i = 0; i < shape.length - 1; i++)
 		{

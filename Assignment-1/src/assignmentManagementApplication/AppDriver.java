@@ -115,16 +115,14 @@ public class AppDriver {
 
 	private static Shape[] loadArray(String filename) {
 		try {
-			BufferedReader file = new BufferedReader(new FileReader(filename));
+			BufferedReader file = new BufferedReader(new FileReader("res/" + filename));
 			String input = file.readLine();
-			
 			
 			int counter = 0;
 			StringTokenizer line = new StringTokenizer(input," ");
 			
 			int size = Integer.parseInt(line.nextToken());
 			Shape[] shapes = new Shape[size];
-			
 			
 			
 			for(int i = 0; i < size;i++) {

@@ -25,6 +25,10 @@ public class Cylinder extends Shape {
 		double baseArea = this.calculateBaseArea();
 		return baseArea * height;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Cylinder [radius=" + radius + ", height=" + height + ", BaseArea=" + calculateBaseArea()
+				+ ", Volume=" + calculateVolume() + "]";
+	}
 }
