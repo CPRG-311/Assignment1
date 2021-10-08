@@ -12,7 +12,7 @@ public class QuickSort {
 	private static <T> void recursiveQuickSort(Shape[] shape, int min, int max, Comparator<? super Shape> comp) {
 		int start = partition(shape, min, max, comp);
 		if (min < start - 1) {
-			recursiveQuickSort(shape, start, min-1, comp);
+			recursiveQuickSort(shape, min, start-1, comp);
 		}
 		if (max < start) {
 			recursiveQuickSort(shape, start, max, comp);
@@ -32,7 +32,7 @@ public class QuickSort {
 			if(min <= max) {
 				swapElements(shape, min, max);
 				min++;
-				max--;
+				max++;
 			}
 		}
 		return min;
