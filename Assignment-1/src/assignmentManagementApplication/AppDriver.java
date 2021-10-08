@@ -1,10 +1,17 @@
 package assignmentManagementApplication;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
-import exceptions.*;
+
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
+import exceptions.compareTypeException;
+import exceptions.sortTypeException;
 import utilities.*;
 
 public class AppDriver {
@@ -17,64 +24,46 @@ public class AppDriver {
 			String sortType = "";
 			
 			BaseAreaCompare compareByA = null; VolumeCompare compareByV = null;
-			try {
-				for (String command: commandInput) {
-					if (command.startsWith("–f") || command.startsWith("–F")) {
-						filename = command.substring(2);
-					}
-					else if (command.startsWith("–t") || command.startsWith("–T")) {
-						String letter = command.substring(2);
-						switch (letter.toLowerCase()) {
-						case "a":
-							compareType = "BaseAreaCompare";
-							compareByA = new BaseAreaCompare();
-							break;
-						case "v":
-							compareType = "VolumeCompare";
-							compareByV = new VolumeCompare();
-							break;
-						case "h": compareType = null; break;
-						default: throw new compareTypeException("Invalid Compare Type, please enter a new command.");
-						}
-					}
-					else if (command.startsWith("–s") || command.startsWith("–S")) {
-						String letter = command.substring(2);
-						
-						switch (letter) {
-						case "q": sortType = "QuickSort"; break;
-						case "b": sortType = "BubbleSort"; break;
-						case "s": sortType = "SelectionSort"; break;
-						case "i": sortType = "InsertionSort"; break;
-						case "m": sortType = "MergeSort"; break;
-						case "z": sortType = "CombSort"; break;
-						default: throw new sortTypeException("Invalid Sort Type, please enter a new command.");
-						}
+			for (String command: commandInput) {
+				if (command.startsWith("–f") || command.startsWith("–F")) {
+					filename = command.substring(2);
+				}
+				else if (command.startsWith("–t") || command.startsWith("–T")) {
+					String letter = command.substring(2);
+					switch (letter.toLowerCase()) {
+					case "a":
+						compareType = "BaseAreaCompare";
+						compareByA = new BaseAreaCompare();
+						break;
+					case "v":
+						compareType = "VolumeCompare";
+						compareByV = new VolumeCompare();
+						break;
+					case "h": compareType = null; break;
+					default: throw new compareTypeException("Compare type not found");
 					}
 				}
-				if (sortType.equals("")) {
-					throw new sortTypeException("Sort type not found. Please enter command using correct format.");
+				else if (command.startsWith("–s") || command.startsWith("–S")) {
+					String letter = command.substring(2);
+					
+					switch (letter) {
+					case "q": sortType = "QuickSort"; break;
+					case "b": sortType = "BubbleSort"; break;
+					case "s": sortType = "SelectionSort"; break;
+					case "i": sortType = "InsertionSort"; break;
+					case "m": sortType = "MergeSort"; break;
+					case "z": sortType = "CombSort"; break;
+					default: throw new sortTypeException("Invalid Argument");
+					}
 				}
-				if (compareType.equals("")) {
-					throw new compareTypeException("Compare type not found. Please enter command using correct format.");
-				}
-			} catch (sortTypeException e) {
-				System.out.println(e.getMessage());
-				System.exit(0);
-			} catch (compareTypeException e) {
-				System.out.println(e.getMessage());
-				System.exit(0);
 			}
-			if (sortType.equals("")) {
-				throw new sortTypeException("Sort type not found. Please enter command using correct format.");
-			}
-			
+			System.out.println(filename);
 			
 			Shape[] array = null;
 			try {
 				array = loadArray(filename);
 			} catch (NullPointerException e) {
-				System.out.println("Cannot find the file specified. Please enter a new command.");
-				System.exit(0);
+				e.printStackTrace();
 			}
 			
 			long timeTaken = 0;
@@ -90,12 +79,12 @@ public class AppDriver {
 				}
 			}
 			
+			System.out.println("The " + sortType + " took " + timeTaken + " ms.");
 			for (int i = 0; i < array.length; i++) {
 				if (i==0 || i==array.length - 1 || i%1000==0) {
 					System.out.println(array[i].toString());
 				}
 			}
-			System.out.println("The " + sortType + " took " + timeTaken + " ms.");
 	}
 
 	private static <T> long sortArray(Shape[] array, String sortType, Comparator<? super Shape> compareBy) {
@@ -143,8 +132,8 @@ public class AppDriver {
 			
 				String shapeName = line.nextToken().toString();
 				Object o = null;
+				//trying to use reflection to make it more efficient
 				
-				//used reflection to make it more efficient
 				String className = "assignmentManagementApplication."+shapeName;
 				Class cls = Class.forName(className);
 				
@@ -154,7 +143,7 @@ public class AppDriver {
 					paramTypes[1] = Double.TYPE;
 					
 					
-					Constructor<? super Shape> ct = cls.getConstructor(paramTypes);
+					Constructor ct = cls.getConstructor(paramTypes);
 					
 					Object argList[] = new Object[2];
 					argList[0] = new Double(Double.parseDouble(line.nextToken()));
