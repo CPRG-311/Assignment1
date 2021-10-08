@@ -42,7 +42,7 @@ public class QuickSort {
 			if(min <= max) {
 				swapElements(shape, min, max);
 				min++;
-				max--;
+				max++;
 			}
 		}
 		return min;
